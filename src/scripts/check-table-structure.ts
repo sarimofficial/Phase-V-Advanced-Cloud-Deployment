@@ -1,3 +1,4 @@
+// @ts-nocheck
 import dotenv from 'dotenv';
 import path from 'path';
 import { Kysely } from 'kysely';
@@ -11,6 +12,7 @@ async function check() {
     const db = new Kysely({ dialect });
 
     // Check user table structure
+    // @ts-ignore - Script file, type ignore for simplicity
     const userColumns = await db.executeQuery({
         sql: 'SELECT column_name, data_type FROM information_schema.columns WHERE table_name = \'user\' ORDER BY ordinal_position',
         parameters: []
