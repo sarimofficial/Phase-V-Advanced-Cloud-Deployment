@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback, useMemo } from 'react'
-import type { Task, Priority } from '@/types/task'
+import type { Task, Priority, UpdateTaskInput } from '@/types/task'
 import { api } from '@/lib/backend-client'
 import { useSession } from '@/lib/auth-client'
 import TaskItem from './TaskItem'
