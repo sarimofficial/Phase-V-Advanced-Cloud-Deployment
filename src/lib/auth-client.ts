@@ -5,10 +5,10 @@ import { createAuthClient } from "better-auth/react"
 const getBaseURL = () => {
   // Check if we're in development mode (localhost)
   if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-    return "https://phase-v-advanced-cloud-deployment-w.vercel.app";
+    return "https://sarimdev-todoappphasevbackend.hf.space";
   }
   // For production or other environments, use the env variable
-  return process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "https://phase-v-advanced-cloud-deployment-w.vercel.app";
+  return process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "https://sarimdev-todoappphasevbackend.hf.space";
 };
 
 export const authClient = createAuthClient({
