@@ -33,10 +33,6 @@ export const auth = betterAuth({
         requireEmailVerification: false, // Set to false for development
     },
     secret: process.env.BETTER_AUTH_SECRET || "fallback-secret-for-dev",
-    trustedOrigins: [
-        "http://localhost:3000",
-        "https://phase-v-advanced-cloud-deployment.vercel.app",
-        "https://phase-v-advanced-cloud-deployment-w.vercel.app",
-        "https://*.vercel.app", // Allow all Vercel preview deployments
-    ],
+    // Remove trustedOrigins to allow same-origin requests
+    // Since auth-client now uses window.location.origin, all requests are same-origin
 });
