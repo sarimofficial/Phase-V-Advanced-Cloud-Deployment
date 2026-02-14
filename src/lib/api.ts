@@ -3,7 +3,7 @@
  * Uses Next.js API proxy routes for authentication
  */
 
-const API_URL = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+const API_URL = process.env.NEXT_PUBLIC_APP_URL || 'https://phase-v-advanced-cloud-deployment-w.vercel.app';
 
 class ApiError extends Error {
     constructor(public status: number, message: string) {
