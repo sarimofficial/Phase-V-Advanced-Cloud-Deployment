@@ -33,9 +33,14 @@ export const GET = async (req: Request) => {
 
 export const POST = async (req: Request) => {
     try {
-        return await handler.POST(req);
+        console.log('[Auth Route] POST request to:', req.url);
+        console.log('[Auth Route] Origin:', req.headers.get('origin'));
+        const response = await handler.POST(req);
+        console.log('[Auth Route] Response status:', response.status);
+        return response;
     } catch (error) {
         console.error("Better Auth POST Error:", error);
+        console.error("Error details:", JSON.stringify(error, null, 2));
         throw error;
     }
 };

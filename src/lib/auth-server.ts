@@ -33,6 +33,7 @@ export const auth = betterAuth({
         requireEmailVerification: false, // Set to false for development
     },
     secret: process.env.BETTER_AUTH_SECRET || "fallback-secret-for-dev",
+    baseURL: process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_APP_URL,
     // Remove trustedOrigins to allow same-origin requests
     // Since auth-client now uses window.location.origin, all requests are same-origin
 });
