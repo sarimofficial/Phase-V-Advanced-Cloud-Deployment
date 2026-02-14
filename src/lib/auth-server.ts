@@ -33,4 +33,9 @@ export const auth = betterAuth({
         requireEmailVerification: false, // Set to false for development
     },
     secret: process.env.BETTER_AUTH_SECRET || "fallback-secret-for-dev",
+    trustedOrigins: [
+        "http://localhost:3000",
+        "https://phase-v-advanced-cloud-deployment-w.vercel.app",
+        process.env.NEXT_PUBLIC_APP_URL || "",
+    ].filter(Boolean),
 });
