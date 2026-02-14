@@ -33,7 +33,12 @@ export const auth = betterAuth({
         requireEmailVerification: false, // Set to false for development
     },
     secret: process.env.BETTER_AUTH_SECRET || "fallback-secret-for-dev",
-    baseURL: process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_APP_URL,
-    // Remove trustedOrigins to allow same-origin requests
-    // Since auth-client now uses window.location.origin, all requests are same-origin
+    // Don't set baseURL - let it be inferred from the request
+    // This allows the auth to work from any Vercel deployment URL
+    advanced: {
+        useSecureCookies: process.env.NODE_ENV === "production",
+        crossSubDomainCookies: {
+            enabled: true,
+        },
+    },
 });
