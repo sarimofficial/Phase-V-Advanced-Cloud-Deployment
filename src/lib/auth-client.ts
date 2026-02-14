@@ -1,14 +1,14 @@
 import { createAuthClient } from "better-auth/react"
 
 // Determine the base URL based on the environment
-// For local development, use localhost; for production, use the configured Vercel URL
+// Always use the current origin to avoid CORS issues
 const getBaseURL = () => {
-  // Check if we're in development mode (localhost)
-  if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-    return "http://localhost:3000";
+  // In the browser, use the current origin (same domain as the page)
+  if (typeof window !== 'undefined') {
+    return window.location.origin;
   }
-  // For production or other environments, use the Vercel deployment
-  return process.env.NEXT_PUBLIC_BETTER_AUTH_URL || "https://phase-v-advanced-cloud-deployment-w.vercel.app";
+  // For SSR, use the env variable as fallback
+  return process.env.NEXT_PUBLIC_BETTER_AUTH_URL || process.env.NEXT_PUBLIC_APP_URL || "";
 };
 
 export const authClient = createAuthClient({
