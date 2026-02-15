@@ -32,8 +32,8 @@ const getBaseURL = () => {
     if (process.env.VERCEL_URL) {
         return `https://${process.env.VERCEL_URL}`;
     }
-    // Fallback to configured URLs
-    return process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_APP_URL || "https://phase-v-advanced-cloud-deployment-w.vercel.app";
+    // Fallback to configured URLs (should be frontend URLs, not backend)
+    return process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 };
 
 export const auth = betterAuth({
@@ -45,10 +45,8 @@ export const auth = betterAuth({
     secret: process.env.BETTER_AUTH_SECRET || "fallback-secret-for-dev",
     baseURL: getBaseURL(),
     trustedOrigins: [
-        "https://phase-v-advanced-cloud-deployment-w.vercel.app",
+        "http://localhost:3000",
+        "https://phase-v-advanced-cloud-deployment.vercel.app",
         "https://*.vercel.app",
-        "https://sarimdev-todoappphasevbackend.hf.space",
-        
-        
     ],
 });
