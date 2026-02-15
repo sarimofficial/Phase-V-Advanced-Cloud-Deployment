@@ -33,7 +33,7 @@ export const auth = betterAuth({
         requireEmailVerification: false,
     },
     secret: process.env.BETTER_AUTH_SECRET || "fallback-secret-for-dev",
-    // Trust all origins - since we're using same-origin requests via window.location.origin
-    // this will accept requests from any Vercel deployment URL
-    trustedOrigins: ["*"],
+    advanced: {
+        disableCSRFCheck: true, // Disable CSRF check which includes origin validation
+    },
 });
