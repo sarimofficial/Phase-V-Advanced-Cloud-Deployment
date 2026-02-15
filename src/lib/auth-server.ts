@@ -30,15 +30,10 @@ export const auth = betterAuth({
     database: postgresDialect,
     emailAndPassword: {
         enabled: true,
-        requireEmailVerification: false, // Set to false for development
+        requireEmailVerification: false,
     },
     secret: process.env.BETTER_AUTH_SECRET || "fallback-secret-for-dev",
-    // Don't set baseURL - let it be inferred from the request
-    // This allows the auth to work from any Vercel deployment URL
-    advanced: {
-        useSecureCookies: process.env.NODE_ENV === "production",
-        crossSubDomainCookies: {
-            enabled: true,
-        },
-    },
+    // Trust all origins - since we're using same-origin requests via window.location.origin
+    // this will accept requests from any Vercel deployment URL
+    trustedOrigins: ["*"],
 });
