@@ -33,7 +33,7 @@ const getBaseURL = () => {
         return `https://${process.env.VERCEL_URL}`;
     }
     // Fallback to configured URLs (should be frontend URLs, not backend)
-    return process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+    return process.env.BETTER_AUTH_URL || process.env.NEXT_PUBLIC_APP_URL || "https://phase-v-advanced-cloud-deployment.vercel.app";
 };
 
 export const auth = betterAuth({
