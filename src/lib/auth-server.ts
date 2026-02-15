@@ -44,9 +44,13 @@ export const auth = betterAuth({
     },
     secret: process.env.BETTER_AUTH_SECRET || "fallback-secret-for-dev",
     baseURL: getBaseURL(),
-    trustedOrigins: [
-        "http://localhost:3000",
-        "https://phase-v-advanced-cloud-deployment.vercel.app",
-        "https://*.vercel.app",
-    ],
+    trustedOrigins: (origin) => {
+        // Accept localhost for development
+        if (origin?.includes('localhost')) return true;
+        // Accept any vercel.app domain
+        if (origin?.includes('.vercel.app')) return true;
+        // Accept the configured app URL
+        if (origin === process.env.NEXT_PUBLIC_APP_URL) return true;
+        return false;
+    },
 });
