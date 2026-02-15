@@ -44,13 +44,6 @@ export const auth = betterAuth({
     },
     secret: process.env.BETTER_AUTH_SECRET || "fallback-secret-for-dev",
     baseURL: getBaseURL(),
-    trustedOrigins: (origin) => {
-        // Accept localhost for development
-        if (origin?.includes('localhost')) return true;
-        // Accept any vercel.app domain
-        if (origin?.includes('.vercel.app')) return true;
-        // Accept the configured app URL
-        if (origin === process.env.NEXT_PUBLIC_APP_URL) return true;
-        return false;
-    },
+    // Don't set trustedOrigins - let Better Auth infer from baseURL
+    // This allows same-origin requests from whatever URL is set as baseURL
 });
