@@ -8,7 +8,18 @@ import { headers } from 'next/headers';
 import jwt from 'jsonwebtoken';
 
 const BACKEND_URL = process.env.BACKEND_URL || 'https://sarimdev-todoappphasevbackend.hf.space';
-const BETTER_AUTH_SECRET = process.env.BETTER_AUTH_SECRET || '';
+
+// Generate a consistent secret based on environment variable
+const getAuthSecret = () => {
+    const envSecret = process.env.BETTER_AUTH_SECRET;
+    if (envSecret && envSecret.length >= 32) {
+        return envSecret;
+    }
+    console.warn("BETTER_AUTH_SECRET is not set or too short (minimum 32 characters)");
+    return "default-secure-secret-key-that-is-at-least-32-characters-long";
+};
+
+const BETTER_AUTH_SECRET = getAuthSecret();
 
 export async function GET(
   request: NextRequest,
